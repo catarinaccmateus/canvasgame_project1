@@ -3,17 +3,26 @@ class Player {
         this.game = game;
         this.context = game.context;
         this.img = new Image();
-        this.img.src = './images/aa-remove2.png';
-        this.playerY = 370;
+        this.img.src = './images/cat-1.png';
+        this.img2 = new Image();
+        this.img.src = './images/cat-2.png';
+        this.img3 = new Image();
+        this.img.src = './images/cat-3.png';
+        this.img4 = new Image();
+        this.img.src = './images/cat-4.png';
+        this.playerWidth = 80;
+        this.playerHeight = 80;
+        this.playerY = 400;
         this.playerX = 0;
         this.playerJumping = true;
         this.velocityX = 0;
         this.velocityY = 5;
         this.speedX = 5;
+        this.arrayOfImages = [this.img, this.img2, this.img3, this.img4];
     }
 
     draw() {
-        this.context.drawImage(this.img, 0, 0, this.img.width / 4, this.img.height / 2, this.playerX, this.playerY, 120, 120);
+        this.context.drawImage(this.img, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
     };
 
     moveRight() {
@@ -36,11 +45,11 @@ class Player {
 
     jump() {
     
-        this.playerY = 270;
+        this.playerY = 400 - this.playerHeight;
     }
 
     goDown() {
-        this.playerY = 370;
+        this.playerY = 400;
     }
 
     setControls() {

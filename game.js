@@ -6,18 +6,26 @@ class Game {
         this.width = this.background.$canvasWidth;
         this.player = new Player(this);
         this.player.setControls();
+        this.playerWidth = this.player.playerWidth;
         this.obstacleArray = [];
         this.obstacleTime = 0;
-        this.frequencyOfObstacle = 2000;
+        this.frequencyOfObstacle;
+        this.score = 0;
         this.animation;
     }
 
     createObstacles(timestamp) {
+        this.frequencyOfObstacle = Math.ceil(Math.random() * 30) * 1000;
+        //so the obstacles show in different intervals;
+        console.log(this.frequencyOfObstacle);
+        console.log(this.obstacleArray);
+
         if (this.obstacleTime < timestamp - this.frequencyOfObstacle) {
             const obstacle = new Obstacles(this);
             this.obstacleArray.push(obstacle);
             this.obstacleTime = timestamp;
-        }
+        };
+        console.log(this.obstacleTime);
     };
 
     updateAndDrawObstacles() {
@@ -27,14 +35,47 @@ class Game {
         }
     };
 
+    checkCollision() {
+        if (typeof this.obstacleArray !== 'undefined' && this.obstacleArray.length > 0) {
+
+            let frontOfPlayer = this.player.playerX + this.playerWidth;
+
+            for (let i = 0; i < this.obstacleArray.length; i++) {
+                if (this.player.playerY === 400 &&
+                    frontOfPlayer > this.obstacleArray[i].obstacleX + 5 &&
+                    frontOfPlayer <= this.obstacleArray[i].obstacleX + 80
+                    //5 is the closest I want my player to get near the trash bin
+                    //80 is the obstacle width
+                    ||
+                    this.player.playerY === 400 &&
+                    this.player.playerX >= this.obstacleArray[i].obstacleX &&
+                    this.player.playerX <= this.obstacleArray[i].obstacleX + 55
+                    //obstacle width is 80, but only declaring 55 since I want the cat's tail to be able to touch the trash bin.
+                ) {
+                    cancelAnimationFrame(this.animation);
+                } else if (this.player.playerX === this.obstacleArray[i].obstacleX) {
+                    this.score++;
+                }
+            }
+        }
+    };
+
+    drawScore() {
+        this.context.fillStyle = 'white';
+        this.context.font = '40px Arial';
+        this.context.fillText(`Your score: ${this.score}`, 10, 50);
+    };
+
     start() {
         this.animationLoop();
     };
 
     drawEverything() {
         this.background.draw();
+        this.drawScore();
         this.player.draw();
-        this.updateAndDrawObstacles
+        this.updateAndDrawObstacles();
+
     };
 
     update() {
@@ -50,8 +91,8 @@ class Game {
         this.update();
         this.createObstacles(timestamp);
         this.drawEverything();
-        this.updateAndDrawObstacles();
         this.animation = window.requestAnimationFrame(timestamp => this.animationLoop(timestamp));
+        this.checkCollision();
     }
 
 }
