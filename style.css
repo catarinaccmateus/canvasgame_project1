@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('./images/page-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 80px;
+    font: 'Arial';
+    color: white;
+    padding: 0;
+    padding-top: 0;
+    margin-bottom: 0.2;
+    border: 0;
+}
+
+canvas {
+    border: 3px solid white;
+}
+
+button {
+    padding: 1em;
+    margin-top: 0;
+    border-top: 0;
+    color: black;
+    font-weight: bolder;
+}
