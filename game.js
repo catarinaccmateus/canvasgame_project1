@@ -12,20 +12,19 @@ class Game {
         this.frequencyOfObstacle;
         this.score = 0;
         this.animation;
-    }
+        this.life = 3;
+    };
+
 
     createObstacles(timestamp) {
-        this.frequencyOfObstacle = Math.ceil(Math.random() * 30) * 1000;
+        this.frequencyOfObstacle = Math.ceil(Math.random() * 40) * 1000;
         //so the obstacles show in different intervals;
-        console.log(this.frequencyOfObstacle);
-        console.log(this.obstacleArray);
 
         if (this.obstacleTime < timestamp - this.frequencyOfObstacle) {
             const obstacle = new Obstacles(this);
             this.obstacleArray.push(obstacle);
             this.obstacleTime = timestamp;
         };
-        console.log(this.obstacleTime);
     };
 
     updateAndDrawObstacles() {
@@ -52,6 +51,7 @@ class Game {
                     this.player.playerX <= this.obstacleArray[i].obstacleX + 55
                     //obstacle width is 80, but only declaring 55 since I want the cat's tail to be able to touch the trash bin.
                 ) {
+
                     cancelAnimationFrame(this.animation);
                 } else if (this.player.playerX === this.obstacleArray[i].obstacleX) {
                     this.score++;
@@ -62,7 +62,7 @@ class Game {
 
     drawScore() {
         this.context.fillStyle = 'white';
-        this.context.font = '40px Arial';
+        this.context.font = 'italic 30px Arial';
         this.context.fillText(`Your score: ${this.score}`, 10, 50);
     };
 
@@ -90,6 +90,7 @@ class Game {
         this.clear();
         this.update();
         this.createObstacles(timestamp);
+        this.player.updateImage(timestamp);
         this.drawEverything();
         this.animation = window.requestAnimationFrame(timestamp => this.animationLoop(timestamp));
         this.checkCollision();
