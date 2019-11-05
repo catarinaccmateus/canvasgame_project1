@@ -22,7 +22,7 @@ class Player {
         this.arrayOfImages = [this.img, this.img2, this.img3, this.img4];
         this.test = 0;
         this.playerTime = 0;
-        this.speed = 200;
+        this.speed = 100;
         this.imageToPrint = this.arrayOfImages[this.test];
     }
 
@@ -67,6 +67,9 @@ class Player {
             this.playerX += this.speedX;
         }
     }
+    //Above I define my right border has 780.
+
+
 
     moveLeft() {
         if (this.playerX === -20) {
@@ -75,6 +78,7 @@ class Player {
             this.playerX -= this.speedX;
         }
     }
+    //Above I define my left border has -20.
 
     jump() {
         if (this.playerY === 400) {

@@ -26,6 +26,12 @@ h1 {
     padding-bottom: 0.15em;
 }
 
+.cat-gif {
+    position: absolute;
+    left: 15%;
+    width: 10%;
+}
+
 
 canvas {
     border: 3px solid white;
@@ -51,3 +57,4 @@ button:hover {
     transition: all 0.4s ease 0s;
     border: 1px solid #e6e6ff;
 }
+
