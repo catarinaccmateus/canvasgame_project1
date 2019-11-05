@@ -19,7 +19,7 @@ class Game {
         this.foodCatched = 0;
         this.animation;
         this.life = 3;
-        this.numberOfObstaclesPerGame = 5;
+        this.numberOfObstaclesPerGame = 10;
         this.house = new House(this);
     };
 
@@ -98,7 +98,14 @@ class Game {
     };
 
 
-
+    checkCollisionEnemy() {
+        if (this.player.playerX < this.enemy.X) {
+            cancelAnimationFrame(this.animation);
+            this.context.fillStyle = 'white';
+            this.context.font = '50px Arial';
+            this.context.fillText('He got you!', this.width / 3, this.height / 2)
+        }
+    }
 
     checkCollisionHouse() {
         let middleOfPlayer = this.player.playerX + this.playerWidth / 2;
@@ -106,7 +113,7 @@ class Game {
             cancelAnimationFrame(this.animation);
             this.context.fillStyle = 'white';
             this.context.font = '50px Arial';
-            this.context.fillText('You arrived home safely!', this.width/3, this.height/2)
+            this.context.fillText('You arrived home safely!', this.width / 3, this.height / 2)
         };
     };
 
@@ -153,6 +160,7 @@ class Game {
         this.drawScore();
         this.house.draw();
         this.player.draw();
+        this.enemy.draw();
         this.updateAndDrawObstacles();
         this.updatAndDrawFood();
     };
@@ -161,6 +169,7 @@ class Game {
 
     update() {
         this.background.update();
+        this.enemy.updatePosition();
     };
 
 
@@ -178,10 +187,12 @@ class Game {
         this.createObstacles(timestamp);
         this.createFood(timestamp);
         this.player.updateImage(timestamp);
+        this.enemy.updateImage(timestamp);
         this.drawEverything();
         this.checkCollisionFood();
         this.animation = window.requestAnimationFrame(timestamp => this.animationLoop(timestamp));
         this.checkCollisionObstacles();
+        this.checkCollisionEnemy();
         this.checkCollisionHouse();
     };
 

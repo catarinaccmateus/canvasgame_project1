@@ -13,7 +13,7 @@ class Player {
         this.playerWidth = 80;
         this.playerHeight = 80;
         this.playerY = 400;
-        this.playerX = 0;
+        this.playerX = this.playerWidth*2;
         this.playerJumping = true;
         this.velocityX = 0;
         this.velocityY = 5;

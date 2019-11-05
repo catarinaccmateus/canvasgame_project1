@@ -23,7 +23,7 @@ h1 {
     font-style: italic;
     margin: 0;
     line-height: 1;
-    padding-bottom: 0.15em;
+    padding-bottom: 0.2em;
 }
 
 .cat-gif {
@@ -58,3 +58,35 @@ button:hover {
     border: 1px solid #e6e6ff;
 }
 
+button:focus {outline:0;}
+
+#instructions {
+    color: white;
+    font-family: 'Bookman', sans-serif;
+    font-size: 1.5em;
+    margin: 0 10%;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+#instructions:hover {
+    border-radius: 25px;
+    background-color: rgb(0, 0, 102, 0.5);
+    font-weight: bold;
+}
+
+.video-display {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+.video-display div {
+    width: 40%;
+}
+
+#introduction {
+    padding-bottom: 1em;
+    font-weight: bold;
+}
