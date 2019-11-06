@@ -27,7 +27,7 @@ class Enemy {
         this.Y = this.gameHeight - this.height - this.distanceFromFloor;
         this.enemyArray = [this.img, this.img2, this.img3, this.img4, this.img5, this.img6, this.img7, this.img8];
         this.index = 0;
-        this.velocity = 0.5;
+        this.velocity = this.game.difficulty;
         this.imageToPrint = this.enemyArray[this.index];
         this.speedImages = 100;
         this.imgTime = 0;
@@ -43,7 +43,7 @@ class Enemy {
             this.velocity = Math.abs(this.velocity);
             this.X += this.velocity;
 
-        } else if (this.X < this.gameWidth / 3) {
+        } else if (this.X < this.gameWidth / 2) {
             this.X += this.velocity;
 
         } else {

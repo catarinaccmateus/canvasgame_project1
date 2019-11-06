@@ -1,5 +1,6 @@
 class Game {
-    constructor() {
+    constructor(difficulty) {
+        this.difficulty = difficulty;
         this.background = new Background(this);
         this.context = this.background.context;
         this.height = this.background.$canvasheight;
@@ -18,13 +19,29 @@ class Game {
         this.score = 0;
         this.foodCatched = 0;
         this.animation;
-        this.life = 3;
+        this.life = 6;
         this.numberOfObstaclesPerGame = 10;
         this.house = new House(this);
+        this.imgHeart = new Image();
+        this.imgHeart.src = './images/heart-life.png'
+        this.lost = false;
     };
 
 
-
+    gameReset() {
+        this.difficulty = difficulty;
+        this.game.clear();
+        this.obstacleArray = [];
+        this.obstacleTime = 0;
+        this.foodArray = [];
+        this.foodTime = 0;
+        this.life = 6;
+        this.score = 0;
+        this.foodCatched = 0;
+        this.player = new Player(this);
+        this.enemy = new Enemy(this);
+        this.lost = false;
+    }
 
     createObstacles(timestamp) {
         this.frequencyOfObstacle = Math.ceil(Math.random() * 40) * 1000;
@@ -66,10 +83,18 @@ class Game {
                     this.player.playerX <= this.obstacleArray[i].obstacleX + 55
                     //obstacle width is 80, but only declaring 55 since I want the cat's tail to be able to touch the trash bin.
                 ) {
-
-                    cancelAnimationFrame(this.animation);
+                    if (this.life > 2) {
+                        this.obstacleArray[i].obstacleX -= 82; //the character width is 80 so I want the obstacle to show behind him.
+                        this.life--;
+                        console.log(this.life);
+                    } else {
+                        this.context.fillStyle = 'white';
+                        this.context.font = 'italic 45px Arial';
+                        this.context.fillText('You got hurt and he caught you!', this.width / 4, this.height / 2);
+                        this.lost = true;
+                    }
                 } else if (this.player.playerX === this.obstacleArray[i].obstacleX) {
-                    //this.score++; --> score will be added everytime he catchs food and not everytime he jumps an obstacle.
+                    //this.score++; -->removed since this score will be added everytime he catchs food and not everytime he jumps an obstacle.
                 }
             }
         }
@@ -100,7 +125,7 @@ class Game {
 
     checkCollisionEnemy() {
         if (this.player.playerX < this.enemy.X) {
-            cancelAnimationFrame(this.animation);
+            this.lost = true;
             this.context.fillStyle = 'white';
             this.context.font = '50px Arial';
             this.context.fillText('He got you!', this.width / 3, this.height / 2)
@@ -113,7 +138,8 @@ class Game {
             cancelAnimationFrame(this.animation);
             this.context.fillStyle = 'white';
             this.context.font = '50px Arial';
-            this.context.fillText('You arrived home safely!', this.width / 3, this.height / 2)
+            this.context.fillText('You arrived home safely!', this.width / 3, this.height / 2);
+            document.getElementById('score_list').innerHTML += `<li> ${this.score} </li>`;
         };
     };
 
@@ -144,9 +170,26 @@ class Game {
         this.context.fillStyle = 'white';
         this.context.font = 'italic 30px Arial';
         this.context.fillText(`Your score: ${this.score}`, 10, 50);
+        if (this.life > 4) {
+            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
+            this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
+            this.context.drawImage(this.imgHeart, 820, 20, 40, 40);
+        } else if (this.life > 2) {
+            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
+            this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
+        } else if (this.life > 0) {
+            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
+        } 
     };
 
-
+    loose() {
+        if (this.lost === true) {
+        cancelAnimationFrame(this.animation);
+        };
+    }
 
     start() {
         this.animationLoop();
@@ -194,6 +237,7 @@ class Game {
         this.checkCollisionObstacles();
         this.checkCollisionEnemy();
         this.checkCollisionHouse();
+        this.loose();
     };
 
 }
