@@ -1,6 +1,21 @@
+let sound_button = document.createElement('audio');
+sound_button.src = './audio/press-button.mp3';
+sound_button.setAttribute("preload", "auto");
+
+let music_background = document.createElement('audio');
+music_background.src = './audio/music-menu-entrance.mp3'
+
 window.onload = function () {
+    
+    document.getElementById('link_start').onclick = function () {
+        music_background.play();
+    };
+
 
     document.getElementById('beginner').onclick = function () {
+
+        music_background.pause();
+        sound_button.play();
         document.getElementById('game-board').innerHTML = `   <button class="restart" id="restart-beginner">Restart</button> 
         <canvas id = 'canvas' width='900' height='500'></canvas>`;
         beginnerGame();
@@ -9,6 +24,9 @@ window.onload = function () {
     }
 
     document.getElementById('intermediate').onclick = function () {
+
+        music_background.pause();
+        sound_button.play();
         document.getElementById('game-board').innerHTML = ` <button class="restart" id="restart-intermediate">Restart</button> 
          <canvas id = 'canvas' width='900' height='500'></canvas>`;
         intermediateGame();
@@ -17,6 +35,9 @@ window.onload = function () {
     }
 
     document.getElementById('advanced').onclick = function () {
+
+        music_background.pause();
+        sound_button.play();
         document.getElementById('game-board').innerHTML = `  <button class="restart" id="restart-advanced">Restart</button> 
         <canvas id = 'canvas' width='900' height='500'></canvas>`;
         advancedGame();
@@ -25,20 +46,25 @@ window.onload = function () {
     }
 
     document.addEventListener('click', event => {
+
         switch (event.target.id) {
+
             case 'restart-beginner':
+                sound_button.play();
                 document.getElementById('game-board').innerHTML = `  <button class="restart" id="restart-advanced">Restart</button> 
                     <canvas id = 'canvas' width='900' height='500'></canvas>`;
-
                 beginnerGame();
                 break;
 
             case 'restart-intermediate':
+                    sound_button.play();
                 document.getElementById('game-board').innerHTML = `  <button class="restart" id="restart-advanced">Restart</button> 
                     <canvas id = 'canvas' width='900' height='500'></canvas>`;
                 intermediateGame();
                 break;
+
             case 'restart-advanced':
+                    sound_button.play();
                 document.getElementById('game-board').innerHTML = `  <button class="restart" id="restart-advanced">Restart</button> 
                         <canvas id = 'canvas' width='900' height='500'></canvas>`;
                 advancedGame();

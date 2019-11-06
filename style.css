@@ -1,5 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=McLaren&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Mr+Dafoe);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:900);
+
 
 
 
@@ -10,6 +12,11 @@ body {
     background-image: url('./images/page-background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.font_game {
+    font-family: 'McLaren', cursive;
+    font-size: 1.2em;
 }
 
 h1 {
@@ -67,6 +74,7 @@ button {
     border: 1px solid #000033;
     transition: all 0.4s ease 0s;
     font-weight: bold;
+    font-family: 'McLaren', cursive;
 }
 
 button:hover {
@@ -91,7 +99,6 @@ button:focus {outline:0;}
     height: 30em;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
@@ -129,9 +136,11 @@ button:focus {outline:0;}
     height: 20em;
 }
 
-#button-levels {
+#buttons-level {
     display: flex;
     justify-content: space-around;
+    padding-top: 1em;
+    margin:0 20%;
 }
 
 #game-board {
@@ -166,6 +175,8 @@ button:focus {outline:0;}
     font-size: 1.2em;
     text-align: center;
     margin-left: 1em;
+    list-style-type: none;
+    font-family: 'McLaren', cursive;    
 }
 
 #cat_and_truck {

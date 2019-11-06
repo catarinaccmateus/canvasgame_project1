@@ -13,17 +13,19 @@ class Player {
         this.playerWidth = 80;
         this.playerHeight = 80;
         this.playerY = 400;
-        this.playerX = this.playerWidth*2;
+        this.playerX = this.playerWidth * 2;
         this.playerJumping = true;
         this.velocityX = 0;
         this.velocityY = 5;
         this.gravity = 5;
         this.speedX = 5;
         this.arrayOfImages = [this.img, this.img2, this.img3, this.img4];
-        this.test = 0;
+        this.index = 0;
         this.playerTime = 0;
         this.speed = 100;
-        this.imageToPrint = this.arrayOfImages[this.test];
+        this.imageToPrint = this.arrayOfImages[this.index];
+        this.jump_sound = document.createElement('audio');
+        this.jump_sound.src = './audio/jump.mp3';
     }
 
     draw() {
@@ -41,20 +43,20 @@ class Player {
         );
     }
 
-    updateImage(a) {
+    updateImage(timestamp) {
 
-        if (this.playerTime < a - this.speed) {
-            if (this.test >= 3) {
-                this.test = 0;
-                this.imageToPrint = this.arrayOfImages[this.test];
+        if (this.playerTime < timestamp - this.speed) {
+            if (this.index >= 3) {
+                this.index = 0;
+                this.imageToPrint = this.arrayOfImages[this.index];
                 //need to re-define again imageToPrint due to the new index;
             } else {
-                this.test++;
-                this.imageToPrint = this.arrayOfImages[this.test];
+                this.index++;
+                this.imageToPrint = this.arrayOfImages[this.index];
                 //need to re-define again imageToPrint due to the new index;
             };
 
-            this.playerTime = a;
+            this.playerTime = timestamp;
         }
 
     };
@@ -113,6 +115,10 @@ class Player {
                     this.moveLeft();
                     break;
                 case 38: //up key
+                    this.jump_sound.pause();
+                    this.jump_sound.currentTime = 0;
+                    //so he can jump twice in a row without being affected by the previous sound;
+                    this.jump_sound.play();
                     this.jump();
                     break;
             }

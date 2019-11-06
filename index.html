@@ -14,11 +14,10 @@
     <div id="game-board">
       <div id="initial-page">
         <div id="instructions-button">
-          <a href="#instructions">Start Game</a>
+          <a href="#instructions" id="link_start">Start Game</a>
         </div>
-        <div>
-            <br>
-            <br>
+        <div class="font_game">
+          <br>
           The local food truck just had an accident and food was spread
           everywhere! <br>
           Help Nicky collect food for his newborn babies!
@@ -76,7 +75,7 @@
             </video>
           </div>
           <div>
-            But be careful! Don't let the driver get you! <br />
+            But be careful! <br> Don't let the driver get you! <br />
             <video width="280" height="200" controls autoplay muted loop>
               <source src="./videos/get-you.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -94,25 +93,25 @@
           pressed for a longer jump!
         </div>
         <div>
-          <img
+            <img
             src="./images/pizza-food.png"
             alt="pizza"
             width="40"
             height="40"
-          />: 1 point /
-          <img
+          />: 1 point   /
+            <img
             src="./images/nuggets-food.png"
             alt="nuggets"
             width="40"
             height="40"
-          />: 2 points /
-          <img
+          />: 2 points   /
+             <img
             src="./images/hamburger-food.png"
             alt="hamburger"
             width="40"
             height="40"
-          />: 3 points /
-          <img
+          />: 3 points   /
+             <img
             src="./images/chicken-food.png"
             alt="chicken"
             width="40"
@@ -131,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div class="no_display" id="score" ><ol id="score_list">YOUR PREVIOUS SCORES</ol></div>
+    <div class="no_display" id="score" ><ul id="score_list">YOUR PREVIOUS SCORES</ul></div>
   </div>
     <script type="text/javascript" src="background.js"></script>
     <script type="text/javascript" src="player.js"></script>

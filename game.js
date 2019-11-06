@@ -25,8 +25,15 @@ class Game {
         this.imgHeart = new Image();
         this.imgHeart.src = './images/heart-life.png'
         this.lost = false;
-    };
-
+        this.music_game = document.createElement('audio');
+        this.music_game.src = './audio/background-game-music.mp3';
+        this.sound_collision_enemy = document.createElement('audio');
+        this.sound_collision_enemy.src = './audio/caught-by-enemy.mp3';
+        this.sound_collision_obstacle = document.createElement('audio');
+        this.sound_collision_obstacle.src = './audio/goint-into-bin-cut.mp3';
+        this.sound_arriving_home = document.createElement('audio');
+        this.sound_arriving_home.src = './audio/got-to-house.mp3';
+    }
 
     gameReset() {
         this.difficulty = difficulty;
@@ -83,14 +90,20 @@ class Game {
                     this.player.playerX <= this.obstacleArray[i].obstacleX + 55
                     //obstacle width is 80, but only declaring 55 since I want the cat's tail to be able to touch the trash bin.
                 ) {
-                    if (this.life > 2) {
+                    if (this.life > 0) {
+                        
                         this.obstacleArray[i].obstacleX -= 82; //the character width is 80 so I want the obstacle to show behind him.
                         this.life--;
                         console.log(this.life);
+                        this.sound_collision_obstacle.pause();
+                        this.sound_collision_obstacle.currentTime = 0;
+                        //so if it reaches to obstacles to quickly, both make sounds.
+                        this.sound_collision_obstacle.play();
                     } else {
                         this.context.fillStyle = 'white';
                         this.context.font = 'italic 45px Arial';
                         this.context.fillText('You got hurt and he caught you!', this.width / 4, this.height / 2);
+                        this.sound_collision_enemy.play();
                         this.lost = true;
                     }
                 } else if (this.player.playerX === this.obstacleArray[i].obstacleX) {
@@ -128,7 +141,10 @@ class Game {
             this.lost = true;
             this.context.fillStyle = 'white';
             this.context.font = '50px Arial';
-            this.context.fillText('He got you!', this.width / 3, this.height / 2)
+            this.context.fillText('He got you!', this.width / 3, this.height / 2);
+            this.music_game.pause();
+            this.music_game.currentTime = 0;
+            this.sound_collision_enemy.play();
         }
     }
 
@@ -140,6 +156,9 @@ class Game {
             this.context.font = '50px Arial';
             this.context.fillText('You arrived home safely!', this.width / 3, this.height / 2);
             document.getElementById('score_list').innerHTML += `<li> ${this.score} </li>`;
+            this.music_game.pause();
+            this.music_game.currentTime = 0;
+            this.sound_arriving_home.play();
         };
     };
 
@@ -175,23 +194,30 @@ class Game {
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 820, 20, 40, 40);
-        } else if (this.life > 2) {
+        } else if (this.life > 2 && this.life <= 5) {
             this.context.fillText('Your lifes: ', 570, 50);
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
-        } else if (this.life > 0) {
+        } else if (this.life === 2) {
             this.context.fillText('Your lifes: ', 570, 50);
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
-        } 
+        } else if (this.life <= 1) {
+            this.context.fillText('Your lifes: ', 570, 50);
+        }
     };
 
     loose() {
         if (this.lost === true) {
         cancelAnimationFrame(this.animation);
+        this.music_game.pause();
+        this.music_game.currentTime = 0;
         };
     }
 
     start() {
+        this.music_game.pause();
+        this.music_game.currentTime = 0;
+        this.music_game.play();
         this.animationLoop();
     };
 
