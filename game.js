@@ -77,14 +77,35 @@ class Game {
             switch (event.target.id) {
 
                 case 'restart-beginner':
+                    this.lost = true;
+                    this.sound_collision_enemy.pause();
+                    this.sound_collision_enemy.currentTime = 0;
+                    this.sound_collision_obstacle.pause();
+                    this.sound_collision_obstacle.currentTime = 0;
+                    this.player.jump_sound.pause();
+                    this.player.jump_sound.currentTime = 0;
                     this.music_game.pause();
                     this.music_game.currentTime = 0;
                     break;
                 case 'restart-intermediate':
+                    this.lost = true;
+                    this.sound_collision_enemy.pause();
+                    this.sound_collision_enemy.currentTime = 0;
+                    this.sound_collision_obstacle.pause();
+                    this.sound_collision_obstacle.currentTime = 0;
+                    this.player.jump_sound.pause();
+                    this.player.jump_sound.currentTime = 0;
                     this.music_game.pause();
                     this.music_game.currentTime = 0;
                     break;
                 case 'restart-advanced':
+                    this.lost = true;
+                    this.sound_collision_enemy.pause();
+                    this.sound_collision_enemy.currentTime = 0;
+                    this.sound_collision_obstacle.pause();
+                    this.sound_collision_obstacle.currentTime = 0;
+                    this.player.jump_sound.pause();
+                    this.player.jump_sound.currentTime = 0;
                     this.music_game.pause();
                     this.music_game.currentTime = 0;
                     break;
@@ -116,7 +137,6 @@ class Game {
                         this.obstacleArray[i].obstacleX -= 135
                         //The object will go back 135px --> 80 that is the character width + 55 since it's the caudal limit we gave in the condition above.
                         this.life--;
-
                         this.sound_collision_obstacle.pause();
                         this.sound_collision_obstacle.currentTime = 0;
                         //so if it reaches to another obstacles to quickly, both will make sounds.
@@ -233,7 +253,8 @@ class Game {
             this.music_game.pause();
             this.music_game.currentTime = 0;
         };
-    }
+    };
+
 
     start() {
         this.music_game.play();
