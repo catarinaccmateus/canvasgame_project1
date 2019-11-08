@@ -20,6 +20,7 @@ Requirements:
 My game:
 
 - Name: Nicky's Run.
-- Story: Nicky is a stray cat that lives in the city. A food truck just had an accident and food is spread everywhere. The goal of Nicky is to get as much food as possible without being caught by the truck driver.
+- Story: Nicky is a stray cat that lives in the city. A food truck just had an accident and food was spread everywhere. 
+The goal of Nicky is to get as much food as possible without being caught by the truck driver, while avoiding obstacles.
 - Controls: up, left and right arrows.
 - Deployed in: https://nickys-run.netlify.com/.
