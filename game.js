@@ -137,6 +137,7 @@ class Game {
                         this.obstacleArray[i].obstacleX -= 135
                         //The object will go back 135px --> 80 that is the character width + 55 since it's the caudal limit we gave in the condition above.
                         this.life--;
+                        this.score -= 5;
                         this.sound_collision_obstacle.pause();
                         this.sound_collision_obstacle.currentTime = 0;
                         //so if it reaches to another obstacles to quickly, both will make sounds.

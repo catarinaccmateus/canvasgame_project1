@@ -43,7 +43,7 @@ class Enemy {
             this.velocity = Math.abs(this.velocity);
             this.X += this.velocity;
 
-        } else if (this.X < this.gameWidth / 2) {
+        } else if (this.X < this.gameWidth*0.6) {
             this.X += this.velocity;
 
         } else {
