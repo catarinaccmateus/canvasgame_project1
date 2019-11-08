@@ -198,11 +198,11 @@ class Game {
             if (this.score > 25) {
                 this.context.fillText('You arrived home safely!', this.width / 3, this.height*0.3);
                 this.context.font = 'italic 40px Arial';
-                this.context.fillText('There is plenty of food for everyone!', this.width*0.2, this.height*0.4);
+                this.context.fillText('There is plenty of food for everybody!', this.width*0.2, this.height*0.4);
             } else {
                 this.context.fillText('You arrived home safely,', this.width / 3, this.height*0.3);
                 this.context.font = 'italic 40px Arial';
-                this.context.fillText('but there is not enough food for everyone!', this.width*0.1, this.height*0.4);
+                this.context.fillText('but there is not enough food for everybody!', this.width*0.1, this.height*0.4);
             }
             document.getElementById('score_list').innerHTML += `<li> ${this.score} </li>`;
             this.music_game.pause();
