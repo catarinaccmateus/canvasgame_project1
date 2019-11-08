@@ -32,7 +32,7 @@ class Player {
         if (this.playerY < 400) {
             this.imageToPrint = this.img2
         }
-        //everytime the player is not at the floor, is with the jumping image.
+        //everytime the player is not at the floor, it is with the jumping image.
 
         this.context.drawImage(
             this.imageToPrint,
@@ -88,12 +88,16 @@ class Player {
         } else if (this.playerY < 400) {
             this.playerY += this.gravity;
         }
-    }
+    };
+
+
 
     goDown() {
         this.playerY = 400;
         this.imageToPrint = this.img;
-    }
+    };
+
+
 
     setControls() {
         window.addEventListener(
@@ -109,10 +113,19 @@ class Player {
         window.addEventListener("keydown", event => {
             switch (event.keyCode) {
                 case 39: //right key
-                    this.moveRight();
+                    if (this.playerY === 400) {
+                        this.moveRight();
+                    } else if (this.playerY < 400) {
+                        this.goDown();
+                    }
+                    //This IF condition allows me to not let my player move on X while jumping.
                     break;
                 case 37: //left key
-                    this.moveLeft();
+                    if (this.playerY === 400) {
+                        this.moveLeft();
+                    } else if (this.playerY < 400) {
+                        this.goDown();
+                    }
                     break;
                 case 38: //up key
                     this.jump_sound.pause();
@@ -120,6 +133,11 @@ class Player {
                     //so he can jump twice in a row without being affected by the previous sound;
                     this.jump_sound.play();
                     this.jump();
+                    break;
+                default:
+                    if (this.playerY < 400) {
+                        this.goDown()
+                    }
                     break;
             }
         });
