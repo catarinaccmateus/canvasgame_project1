@@ -194,8 +194,16 @@ class Game {
         if (this.house.X <= middleOfPlayer) {
             cancelAnimationFrame(this.animation);
             this.context.fillStyle = 'white';
-            this.context.font = '50px Arial';
-            this.context.fillText('You arrived home safely!', this.width / 3, this.height / 2);
+            this.context.font = 'italic 50px Arial';
+            if (this.score > 25) {
+                this.context.fillText('You arrived home safely!', this.width / 3, this.height*0.3);
+                this.context.font = 'italic 40px Arial';
+                this.context.fillText('There is plenty of food for everyone!', this.width*0.2, this.height*0.4);
+            } else {
+                this.context.fillText('You arrived home safely,', this.width / 3, this.height*0.3);
+                this.context.font = 'italic 40px Arial';
+                this.context.fillText('but there is not enough food for everyone!', this.width*0.1, this.height*0.4);
+            }
             document.getElementById('score_list').innerHTML += `<li> ${this.score} </li>`;
             this.music_game.pause();
             this.music_game.currentTime = 0;
@@ -227,23 +235,33 @@ class Game {
 
 
     drawScore() {
-        this.context.fillStyle = 'white';
+        if (this.score >= 25) {
+            this.context.fillStyle = 'green';
+        } else if (this.score < 25 && this.score >= 0) {
+            this.context.fillStyle = 'white';
+        } else {
+            this.context.fillStyle = 'red';
+        };
         this.context.font = 'italic 30px Arial';
         this.context.fillText(`Your score: ${this.score}`, 10, 50);
         if (this.life === 3) {
-            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.fillStyle = 'white';
+            this.context.fillText('Your lives: ', 570, 50);
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 820, 20, 40, 40);
         } else if (this.life === 2) {
-            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.fillStyle = 'white';
+            this.context.fillText('Your lives: ', 570, 50);
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
             this.context.drawImage(this.imgHeart, 770, 20, 40, 40);
         } else if (this.life === 1) {
-            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.fillStyle = 'white';
+            this.context.fillText('Your lives: ', 570, 50);
             this.context.drawImage(this.imgHeart, 720, 20, 40, 40);
         } else if (this.life < 1) {
-            this.context.fillText('Your lifes: ', 570, 50);
+            this.context.fillStyle = '#cc0000';
+            this.context.fillText('Your 3 lives are gone!', 570, 50);
         }
     };
 

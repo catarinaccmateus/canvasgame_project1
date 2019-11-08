@@ -16,7 +16,7 @@ window.onload = function () {
 
         music_background.pause();
         sound_button.play();
-        document.getElementById('game-board').innerHTML = `   <button class="restart" id="restart-beginner">Restart</button> 
+        document.getElementById('game-board').innerHTML = `  <button class="restart" id="restart-beginner">Restart</button>  
         <canvas id = 'canvas' width='900' height='500'></canvas>`;
         beginnerGame();
         const element = document.getElementById("score");

@@ -39,22 +39,36 @@ h1 {
     width: 10%;
 }
 
-#instructions-button a{
+.style_link {
     text-decoration: none;
-    font-size: 1.2em;;
-    color:white;
+    font-size: 1.2em;
+    ;
+    color: white;
     background-color: #000066;
-    border: 1px solid #000033; 
+    border: 1px solid #000033;
     padding: 20px;
     border-radius: 50px;
+    font-weight: bold;
+    font-family: 'McLaren', cursive;
 }
 
-a:hover {
+.style_link:hover {
     text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.4s ease 0s;
-    border: 1px solid #e6e6ff; 
+    border: 1px solid #e6e6ff;
+}
+
+.small_font {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-left: 1.5em;
+}
+
+.space_between {
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -85,7 +99,9 @@ button:hover {
     border: 1px solid #e6e6ff;
 }
 
-button:focus {outline:0;}
+button:focus {
+    outline: 0;
+}
 
 #instructions {
     color: white;
@@ -126,13 +142,13 @@ button:focus {outline:0;}
     display: flex;
     flex-direction: column;
     align-content: space-around;
-    color:white;
+    color: white;
     font-weight: bold;
     font-family: 'Bookman', sans-serif;
     font-size: 1.5em;
     margin: 2em;
     text-align: center;
-    margin-bottom:5em;
+    margin-bottom: 5em;
     height: 20em;
 }
 
@@ -140,7 +156,7 @@ button:focus {outline:0;}
     display: flex;
     justify-content: space-around;
     padding-top: 1em;
-    margin:0 20%;
+    margin: 0 20%;
 }
 
 #game-board {
@@ -159,7 +175,7 @@ button:focus {outline:0;}
 }
 
 #board_and_score {
-    color:white;
+    color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -176,7 +192,7 @@ button:focus {outline:0;}
     text-align: center;
     margin-left: 1em;
     list-style-type: none;
-    font-family: 'McLaren', cursive;    
+    font-family: 'McLaren', cursive;
 }
 
 #cat_and_truck {
