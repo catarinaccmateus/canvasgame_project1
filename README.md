@@ -1,8 +1,7 @@
+
+## Project #1: The Game
+
 IronHack - Web Development Full-Time Bootcamp
-
-Project #1: The Game
-
-
 
 Requirements:
 
